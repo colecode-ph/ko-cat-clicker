@@ -6,10 +6,19 @@ var Cat = function () {
 };
 
 var ViewModel = function () {
+    // var self = this;
+    // 'this refers to the ViewModel binding context'
+
     this.currentCat = ko.observable( new Cat() );
 
     this.incrementCounter = function () {
-        this.currentCat().clickCount(this.currentCat().clickCount() + 1);
+        this.clickCount(this.clickCount() + 1);
+        // 'this' refers to the currentCat binding context
+        // because of the with: currentCat binding on the div element
+        // which I don't understand because I thought $parent escaped that context
+
+        // another way to do this using the self varible
+        // self.currentCat().clickCount(this.currentCat().clickCount() + 1);
     };
 }
 
